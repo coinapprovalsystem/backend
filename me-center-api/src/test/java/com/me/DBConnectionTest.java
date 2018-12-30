@@ -28,7 +28,6 @@ public class DBConnectionTest {
         try {
             System.out.println(dataSource.getClass());
             Connection connection = dataSource.getConnection();
-
             System.out.println(connection.getCatalog());
         } catch (SQLException e) {
             e.printStackTrace();

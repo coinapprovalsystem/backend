@@ -6,6 +6,8 @@
 ##配置数据库
 ``使用MySQL数据库，根据自己本地或者虚拟机里的ip更改application.properties文件中的username/password然后跑一下单元测试DBConnectionTest
 来测试连接是否正常。``
+##配置lombok
+``ctrl+alt+s 打开setting->install plugins from repository ->搜 lombok``
 ###建表
 ``见表语句保存在userInfo.sql文件中``
 
