@@ -1,5 +1,6 @@
 package com.me.mysql.domain;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,52 +115,52 @@ public class GoodsInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdEqualTo(Long value) {
+        public Criteria andGoodsIdEqualTo(Integer value) {
             addCriterion("goodsId =", value, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdNotEqualTo(Long value) {
+        public Criteria andGoodsIdNotEqualTo(Integer value) {
             addCriterion("goodsId <>", value, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdGreaterThan(Long value) {
+        public Criteria andGoodsIdGreaterThan(Integer value) {
             addCriterion("goodsId >", value, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andGoodsIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("goodsId >=", value, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdLessThan(Long value) {
+        public Criteria andGoodsIdLessThan(Integer value) {
             addCriterion("goodsId <", value, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdLessThanOrEqualTo(Long value) {
+        public Criteria andGoodsIdLessThanOrEqualTo(Integer value) {
             addCriterion("goodsId <=", value, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdIn(List<Long> values) {
+        public Criteria andGoodsIdIn(List<Integer> values) {
             addCriterion("goodsId in", values, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdNotIn(List<Long> values) {
+        public Criteria andGoodsIdNotIn(List<Integer> values) {
             addCriterion("goodsId not in", values, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdBetween(Long value1, Long value2) {
+        public Criteria andGoodsIdBetween(Integer value1, Integer value2) {
             addCriterion("goodsId between", value1, value2, "goodsId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsIdNotBetween(Long value1, Long value2) {
+        public Criteria andGoodsIdNotBetween(Integer value1, Integer value2) {
             addCriterion("goodsId not between", value1, value2, "goodsId");
             return (Criteria) this;
         }
@@ -314,52 +315,52 @@ public class GoodsInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdEqualTo(Long value) {
+        public Criteria andSourceIdEqualTo(Integer value) {
             addCriterion("sourceId =", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdNotEqualTo(Long value) {
+        public Criteria andSourceIdNotEqualTo(Integer value) {
             addCriterion("sourceId <>", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdGreaterThan(Long value) {
+        public Criteria andSourceIdGreaterThan(Integer value) {
             addCriterion("sourceId >", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andSourceIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("sourceId >=", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdLessThan(Long value) {
+        public Criteria andSourceIdLessThan(Integer value) {
             addCriterion("sourceId <", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdLessThanOrEqualTo(Long value) {
+        public Criteria andSourceIdLessThanOrEqualTo(Integer value) {
             addCriterion("sourceId <=", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdIn(List<Long> values) {
+        public Criteria andSourceIdIn(List<Integer> values) {
             addCriterion("sourceId in", values, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdNotIn(List<Long> values) {
+        public Criteria andSourceIdNotIn(List<Integer> values) {
             addCriterion("sourceId not in", values, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdBetween(Long value1, Long value2) {
+        public Criteria andSourceIdBetween(Integer value1, Integer value2) {
             addCriterion("sourceId between", value1, value2, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdNotBetween(Long value1, Long value2) {
+        public Criteria andSourceIdNotBetween(Integer value1, Integer value2) {
             addCriterion("sourceId not between", value1, value2, "sourceId");
             return (Criteria) this;
         }
@@ -374,52 +375,52 @@ public class GoodsInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPriceEqualTo(Long value) {
+        public Criteria andPriceEqualTo(BigDecimal value) {
             addCriterion("price =", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotEqualTo(Long value) {
+        public Criteria andPriceNotEqualTo(BigDecimal value) {
             addCriterion("price <>", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThan(Long value) {
+        public Criteria andPriceGreaterThan(BigDecimal value) {
             addCriterion("price >", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThanOrEqualTo(Long value) {
+        public Criteria andPriceGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("price >=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThan(Long value) {
+        public Criteria andPriceLessThan(BigDecimal value) {
             addCriterion("price <", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThanOrEqualTo(Long value) {
+        public Criteria andPriceLessThanOrEqualTo(BigDecimal value) {
             addCriterion("price <=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIn(List<Long> values) {
+        public Criteria andPriceIn(List<BigDecimal> values) {
             addCriterion("price in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotIn(List<Long> values) {
+        public Criteria andPriceNotIn(List<BigDecimal> values) {
             addCriterion("price not in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceBetween(Long value1, Long value2) {
+        public Criteria andPriceBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price between", value1, value2, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotBetween(Long value1, Long value2) {
+        public Criteria andPriceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price not between", value1, value2, "price");
             return (Criteria) this;
         }
@@ -494,52 +495,52 @@ public class GoodsInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPopulationEqualTo(Long value) {
+        public Criteria andPopulationEqualTo(Integer value) {
             addCriterion("population =", value, "population");
             return (Criteria) this;
         }
 
-        public Criteria andPopulationNotEqualTo(Long value) {
+        public Criteria andPopulationNotEqualTo(Integer value) {
             addCriterion("population <>", value, "population");
             return (Criteria) this;
         }
 
-        public Criteria andPopulationGreaterThan(Long value) {
+        public Criteria andPopulationGreaterThan(Integer value) {
             addCriterion("population >", value, "population");
             return (Criteria) this;
         }
 
-        public Criteria andPopulationGreaterThanOrEqualTo(Long value) {
+        public Criteria andPopulationGreaterThanOrEqualTo(Integer value) {
             addCriterion("population >=", value, "population");
             return (Criteria) this;
         }
 
-        public Criteria andPopulationLessThan(Long value) {
+        public Criteria andPopulationLessThan(Integer value) {
             addCriterion("population <", value, "population");
             return (Criteria) this;
         }
 
-        public Criteria andPopulationLessThanOrEqualTo(Long value) {
+        public Criteria andPopulationLessThanOrEqualTo(Integer value) {
             addCriterion("population <=", value, "population");
             return (Criteria) this;
         }
 
-        public Criteria andPopulationIn(List<Long> values) {
+        public Criteria andPopulationIn(List<Integer> values) {
             addCriterion("population in", values, "population");
             return (Criteria) this;
         }
 
-        public Criteria andPopulationNotIn(List<Long> values) {
+        public Criteria andPopulationNotIn(List<Integer> values) {
             addCriterion("population not in", values, "population");
             return (Criteria) this;
         }
 
-        public Criteria andPopulationBetween(Long value1, Long value2) {
+        public Criteria andPopulationBetween(Integer value1, Integer value2) {
             addCriterion("population between", value1, value2, "population");
             return (Criteria) this;
         }
 
-        public Criteria andPopulationNotBetween(Long value1, Long value2) {
+        public Criteria andPopulationNotBetween(Integer value1, Integer value2) {
             addCriterion("population not between", value1, value2, "population");
             return (Criteria) this;
         }

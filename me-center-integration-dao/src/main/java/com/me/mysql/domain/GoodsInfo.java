@@ -1,29 +1,30 @@
 package com.me.mysql.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class GoodsInfo implements Serializable {
-    private Long goodsId;
+    private Integer goodsId;
 
     private String goodsName;
 
     private String goodsType;
 
-    private Long sourceId;
+    private Integer sourceId;
 
-    private Long price;
+    private BigDecimal price;
 
     private Boolean passedQualified;
 
-    private Long population;
+    private Integer population;
 
     private static final long serialVersionUID = 1L;
 
-    public Long getGoodsId() {
+    public Integer getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(Long goodsId) {
+    public void setGoodsId(Integer goodsId) {
         this.goodsId = goodsId;
     }
 
@@ -43,19 +44,19 @@ public class GoodsInfo implements Serializable {
         this.goodsType = goodsType == null ? null : goodsType.trim();
     }
 
-    public Long getSourceId() {
+    public Integer getSourceId() {
         return sourceId;
     }
 
-    public void setSourceId(Long sourceId) {
+    public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -67,11 +68,11 @@ public class GoodsInfo implements Serializable {
         this.passedQualified = passedQualified;
     }
 
-    public Long getPopulation() {
+    public Integer getPopulation() {
         return population;
     }
 
-    public void setPopulation(Long population) {
+    public void setPopulation(Integer population) {
         this.population = population;
     }
 }
