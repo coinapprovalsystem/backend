@@ -18,6 +18,9 @@ import javax.sql.DataSource;
 public class Application {
 
     public static void main(String[] args) {
+        //获取调用栈的数组，并且获取对应的方法和类名，获取的方式应该就是将this传入，获取的方式就是通过回调函数
+//        StackTraceElement[] element = (new RuntimeException()).getStackTrace();
+//        element[0].getMethodName();
         SpringApplication.run(Application.class,args);
     }
 }

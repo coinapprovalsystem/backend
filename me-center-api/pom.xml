@@ -36,6 +36,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.getsentry.raven</groupId>
             <artifactId>raven-logback</artifactId>
         </dependency>
