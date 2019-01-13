@@ -1,5 +1,6 @@
-package com.me;
+package com.me.configuration;
 
+import com.me.entity.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class DBConnectionTest {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private Student student;
     @Test
     public void testConnection(){
         try {
@@ -32,6 +35,11 @@ public class DBConnectionTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testConfiguration(){
+        System.out.println(student.getName()+" and "+student.getAge());
     }
 }
 

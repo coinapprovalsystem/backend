@@ -40,11 +40,12 @@
             <artifactId>janino</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
-            <groupId>com.getsentry.raven</groupId>
-            <artifactId>raven-logback</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.54</version>
         </dependency>
-
     </dependencies>
 
 </project>

@@ -1,197 +1,339 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true">
-    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property name="LOG_NAME" value="/home"></property>
-    <!-- %m输出的信息,%p日志级别,%t线程名,%d日期,%c类的全名,,,, -->
+<!-- 从高到地低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
+<!-- 日志输出规则 根据当前ROOT 级别，日志输出时，级别高于root默认的级别时 会输出 -->
+<!-- 以下 每个配置的 filter 是过滤掉输出文件里面，会出现高级别文件，依然出现低级别的日志信息，通过filter 过滤只记录本级别的日志 -->
+<!-- 属性描述 scan：性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
+	debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 定义日志文件 输入位置 -->
+    <property name="log_dir" value="/data/webroot/workorder-csc-api/logs" />
+    <!-- 日志最大的历史 15天 -->
+    <property name="maxHistory" value="30" />
+    <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{30}.%method:%line [%X{reqKey}] - %msg%n" />
+
+    <springProperty scope="context" name="sentryEnable" source="sentry.enable" defaultValue="false" />
+
+    <springProperty scope="context" name="elkEnable" source="elk.enable" defaultValue="false" />
+    <springProperty scope="context" name="elkHost" source="elk.host" defaultValue="localhost" />
+    <springProperty scope="context" name="elkPort" source="elk.port" defaultValue="5672" />
+    <springProperty scope="context" name="elkUsername" source="elk.username" defaultValue="test" />
+    <springProperty scope="context" name="elkPassword" source="elk.password" defaultValue="itsme999" />
+    <springProperty scope="context" name="elkVirtualHost" source="elk.virtualHost" defaultValue="/dev" />
+    <springProperty scope="context" name="elkExchange" source="elk.exchange" defaultValue="logback-exchange" />
+    <springProperty scope="context" name="elkQueue" source="elk.queue" defaultValue="logback-queue" />
+    <springProperty scope="context" name="elkRoutingKey" source="elk.routingKey" defaultValue="" />
+    <springProperty scope="context" name="elkIdentifier" source="elk.identifier" defaultValue="UNDEFINED" />
+    <springProperty scope="context" name="elkClientProvidedName" source="elk.clientProvidedName" defaultValue="UNDEFINED" />
+
+    <!-- ConsoleAppender 控制台输出日志 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 对日志进行格式化 -->
         <encoder>
-            <!--<pattern>%d %p (%file:%line\)- %m%n</pattern>-->
-            <!--格式化输出：%d:表示日期    %thread:表示线程名     %-5level:级别从左显示5个字符宽度  %msg:日志消息    %n:是换行符-->
-            <pattern>1-%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
-            <charset>UTF-8</charset>
+            <pattern>${pattern}</pattern>
         </encoder>
-    </appender>
-    <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
-    <contextName>RestAPI</contextName>
-    <property name="LOG_PATH" value=".logs"/>
-    <!--设置系统日志目录-->
-    <property name="APPDIR" value="app"/>
-    <!--
-          说明：
-          1、日志级别及文件
-              日志记录采用分级记录，级别与日志文件名相对应，不同级别的日志信息记录到不同的日志文件中
-              例如：error级别记录到log_error_xxx.log或log_error.log（该文件为当前记录的日志文件），而log_error_xxx.log为归档日志，
-              日志文件按日期记录，同一天内，若日志文件大小等于或大于2M，则按0、1、2...顺序分别命名
-              例如log-level-2013-12-21.0.log
-              其它级别的日志也是如此。
-          2、文件路径
-              若开发、测试用，在Eclipse中运行项目，则到Eclipse的安装路径查找logs文件夹，以相对路径../logs。
-              若部署到Tomcat下，则在Tomcat下的logs文件中
-          3、Appender
-              FILEERROR对应error级别，文件名以log-error-xxx.log形式命名
-              FILEWARN对应warn级别，文件名以log-warn-xxx.log形式命名
-              FILEINFO对应info级别，文件名以log-info-xxx.log形式命名
-              FILEDEBUG对应debug级别，文件名以log-debug-xxx.log形式命名
-              CONSOLE将日志信息输出到控制上，为方便开发测试使用
-       -->
-    <!-- 日志记录器，日期滚动记录 -->
-    <appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${LOG_PATH}/${APPDIR}/log_error.log</file>
-        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
-            而2013-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
-            <fileNamePattern>${LOG_PATH}/${APPDIR}/error/log-error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，
-            命名日志文件，例如log-error-2013-12-21.0.log -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>2MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-        <!-- 追加方式记录日志 -->
-        <append>true</append>
-        <!-- 日志文件的格式 -->
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
-            <charset>utf-8</charset>
-        </encoder>
-        <!-- 此日志文件只记录info级别的 -->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>error</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
     </appender>
 
-    <!-- 日志记录器，日期滚动记录 -->
-    <appender name="FILEWARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${LOG_PATH}/${APPDIR}/log_warn.log</file>
-        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录ERROR级别以上的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <file>${log_dir}/error.log</file>
+        <!-- 每日或者单个文件超过300M是生成一个新的日志文件，当日志文件超过50个时删除更早的文件 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/${APPDIR}/warn/log-warn-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，
-            命名日志文件，例如log-error-2013-12-21.0.log -->
+            <fileNamePattern>${log_dir}/error_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>2MB</maxFileSize>
+                <maxFileSize>300MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
-        <!-- 追加方式记录日志 -->
-        <append>true</append>
-        <!-- 日志文件的格式 -->
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
-            <charset>utf-8</charset>
-        </encoder>
-        <!-- 此日志文件只记录info级别的 -->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>warn</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
-
-    <!-- 日志记录器，日期滚动记录 -->
-    <appender name="FILEINFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${LOG_PATH}/${APPDIR}/log_info.log</file>
-        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
-            而2013-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
-            <fileNamePattern>${LOG_PATH}/${APPDIR}/info/log-info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，
-            命名日志文件，例如log-error-2013-12-21.0.log -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>2MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-        <!-- 追加方式记录日志 -->
-        <append>true</append>
-        <!-- 日志文件的格式 -->
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
-            <charset>utf-8</charset>
-        </encoder>
-        <!-- 此日志文件只记录info级别的 -->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>info</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
-
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
-            <!--<charset>GBK</charset>-->
+            <pattern>${pattern}</pattern>
+            <immediateFlush>true</immediateFlush>
         </encoder>
     </appender>
-    <logger name="com.me.mysql.mapper" level="debug" />
 
-    <logger name="com.minlia" level="DEBUG"/>
-    <logger name="org.springframework.data.mybatis" level="DEBUG"/>
-    <logger name="org.springframework.aop.aspectj" level="ERROR"/>
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 记录info级别以上的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <file>${log_dir}/info.log</file>
+        <!-- 每日或者单个文件超过300M是生成一个新的日志文件，当日志文件超过50个时删除更早的文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/info_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>300MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${pattern}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
 
-    <logger name="javax.activation" level="WARN"/>
-    <logger name="javax.mail" level="WARN"/>
-    <logger name="javax.xml.bind" level="WARN"/>
-    <logger name="ch.qos.logback" level="INFO"/>
-    <logger name="com.codahale.metrics" level="WARN"/>
-    <logger name="com.ryantenney" level="WARN"/>
-    <logger name="com.sun" level="WARN"/>
-    <logger name="com.zaxxer" level="WARN"/>
-    <logger name="io.undertow" level="WARN"/>
-    <logger name="net.sf.ehcache" level="WARN"/>
-    <logger name="org.apache" level="WARN"/>
-    <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
-    <logger name="org.bson" level="WARN"/>
-    <logger name="org.hibernate.validator" level="WARN"/>
-    <logger name="org.hibernate" level="WARN"/>
-    <logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
-    <logger name="org.springframework.web" level="INFO"/>
-    <logger name="org.springframework.security" level="WARN"/>
-    <logger name="org.springframework.cache" level="WARN"/>
-    <logger name="org.thymeleaf" level="WARN"/>
-    <logger name="org.xnio" level="WARN"/>
-    <logger name="springfox" level="WARN"/>
-    <logger name="sun.rmi" level="WARN"/>
-    <logger name="liquibase" level="WARN"/>
-    <logger name="sun.rmi.transport" level="WARN"/>
+    <appender name="ASYNC_INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1024</queueSize>
+        <includeCallerData>true</includeCallerData>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="INFO" />
+    </appender>
 
-    <logger name="jdbc.connection" level="ERROR"/>
-    <logger name="jdbc.resultset" level="ERROR"/>
-    <logger name="jdbc.resultsettable" level="INFO"/>
-    <logger name="jdbc.audit" level="ERROR"/>
-    <logger name="jdbc.sqltiming" level="ERROR"/>
-    <logger name="jdbc.sqlonly" level="INFO"/>
+    <if condition='property("sentryEnable").contains("true")'>
+        <then>
+            <appender name="Sentry" class="com.getsentry.raven.logback.SentryAppender">
+                <!-- 过滤器，只记录ERROR级别以上的日志 -->
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                    <level>ERROR</level>
+                </filter>
+                <!--<filter class="com.tuhu.finance.utils.common.filter.SentrySwitchFilter" />-->
+                <dsn>http://5e9bcb04a712490c9f5ca40f58305f03:589ad3eb18594bd6af21ff20f6c90271@netscaler.ad.tuhu.cn:9000/147</dsn>
+            </appender>
+        </then>
+    </if>
 
-    <!--<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">-->
-    <!--<resetJUL>true</resetJUL>-->
-    <!--</contextListener>-->
+    <if condition='property("elkEnable").contains("true")'>
+        <then>
+            <appender name="ELK"
+                      class="com.tuhu.finance.logback.appender.rabbitmq.RabbitMQAppender">
+                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                    <level>INFO</level>
+                </filter>
+                <host>${elkHost}</host>
+                <port>${elkPort}</port>
+                <username>${elkUsername}</username>
+                <password>${elkPassword}</password>
+                <virtualHost>${elkVirtualHost}</virtualHost>
+                <exchange>${elkExchange}</exchange>
+                <queue>${elkQueue}</queue>
+                <routingKey>${elkRoutingKey}</routingKey>
+                <type>topic</type>
+                <exchangeDurable>true</exchangeDurable>
+                <queueDurable>true</queueDurable>
+                <identifier>${elkIdentifier}</identifier>
+                <clientProvidedName>${elkClientProvidedName}</clientProvidedName>
+                <layout class="com.tuhu.finance.logback.appender.rabbitmq.JSONLayout" />
+            </appender>
+        </then>
+    </if>
 
-    <springProfile name="production">
-        <root level="DEBUG">
-            <!--<appender-ref ref="FILEERROR"/>-->
-            <!--<appender-ref ref="FILEWARN"/>-->
-            <!--<appender-ref ref="FILEINFO"/>-->
-            <!--<appender-ref ref="DBAPPENDER"/>-->
-            <appender-ref ref="STDOUT"/>
+    <appender name="EVENT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 记录info级别以上的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <file>${log_dir}/event.log</file>
+        <!-- 每日或者单个文件超过300M是生成一个新的日志文件，当日志文件超过50个时删除更早的文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/event_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>300MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${pattern}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
 
-        </root>
-    </springProfile>
+    <appender name="ASYNC_EVENT" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1024</queueSize>
+        <includeCallerData>true</includeCallerData>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="EVENT" />
+    </appender>
 
+    <appender name="EVENT-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录ERROR级别以上的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <file>${log_dir}/event-error.log</file>
+        <!-- 每日或者单个文件超过300M是生成一个新的日志文件，当日志文件超过50个时删除更早的文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/event-error_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>300MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${pattern}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
 
-    <springProfile name="dev">
-        <root level="DEBUG">
-            <!--<appender-ref ref="FILEERROR"/>-->
-            <!--<appender-ref ref="FILEWARN"/>-->
-            <!--<appender-ref ref="FILEINFO"/>-->
-            <!--<appender-ref ref="DBAPPENDER"/>-->
-            <appender-ref ref="CONSOLE"/>
+    <appender name="FAILED-EVENT-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录ERROR级别以上的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <file>${log_dir}/failed-event.log</file>
+        <!-- 每日或者单个文件超过300M是生成一个新的日志文件，当日志文件超过50个时删除更早的文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/failed-event_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>300MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${pattern}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
 
-        </root>
-    </springProfile>
+    <appender name="MONITOR-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录ERROR级别以上的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <file>${log_dir}/monitor-appender.log</file>
+        <!-- 每日或者单个文件超过50M是生成一个新的日志文件，当日志文件超过12个删除更早的文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/monitor-appender_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>12</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${pattern}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
 
+    <appender name="DRUID-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <file>${log_dir}/druid-appender.log</file>
+        <!-- 每日或者单个文件超过50M是生成一个新的日志文件，当日志文件超过12个删除更早的文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/druid-appender_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>12</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${pattern}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="DEFAULT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 记录info级别以上的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <file>${log_dir}/default.log</file>
+        <!-- 每日或者单个文件超过300M是生成一个新的日志文件，当日志文件超过50个时删除更早的文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/default_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>300MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${pattern}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_DEFAULT" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1024</queueSize>
+        <includeCallerData>true</includeCallerData>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="DEFAULT" />
+    </appender>
+
+    <logger name="com" level="INFO" additivity="false">
+        <appender-ref ref="ASYNC_INFO" />
+        <appender-ref ref="ERROR" />
+        <if condition='property("sentryEnable").contains("true")'>
+            <then>
+                <appender-ref ref="Sentry" />
+            </then>
+        </if>
+        <if condition='property("elkEnable").contains("true")'>
+            <then>
+                <appender-ref ref="ELK" />
+            </then>
+        </if>
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="com.alibaba.druid" level="INFO" additivity="false">
+        <appender-ref ref="DRUID-APPENDER" />
+        <if condition='property("sentryEnable").contains("true")'>
+            <then>
+                <appender-ref ref="Sentry" />
+            </then>
+        </if>
+        <if condition='property("elkEnable").contains("true")'>
+            <then>
+                <appender-ref ref="ELK" />
+            </then>
+        </if>
+    </logger>
+
+    <logger name="org" level="INFO" additivity="false">
+        <appender-ref ref="ASYNC_INFO" />
+        <appender-ref ref="ERROR" />
+        <if condition='property("sentryEnable").contains("true")'>
+            <then>
+                <appender-ref ref="Sentry" />
+            </then>
+        </if>
+        <if condition='property("elkEnable").contains("true")'>
+            <then>
+                <appender-ref ref="ELK" />
+            </then>
+        </if>
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="MONITOR-LOGGER" level="ERROR" additivity="false">
+        <appender-ref ref="MONITOR-APPENDER" />
+        <if condition='property("sentryEnable").contains("true")'>
+            <then>
+                <appender-ref ref="Sentry" />
+            </then>
+        </if>
+        <if condition='property("elkEnable").contains("true")'>
+            <then>
+                <appender-ref ref="ELK" />
+            </then>
+        </if>
+    </logger>
+
+    <logger name="org.apache.ibatis" level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ASYNC_DEFAULT" />
+    </logger>
+
+    <!-- root级别 DEBUG -->
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ASYNC_DEFAULT" />
+        <if condition='property("sentryEnable").contains("true")'>
+            <then>
+                <appender-ref ref="Sentry" />
+            </then>
+        </if>
+        <if condition='property("elkEnable").contains("true")'>
+            <then>
+                <appender-ref ref="ELK" />
+            </then>
+        </if>
+    </root>
 </configuration>
