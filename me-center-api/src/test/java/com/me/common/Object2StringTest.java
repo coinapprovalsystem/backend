@@ -22,7 +22,7 @@ import java.util.List;
  */
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-public class String2ObjectTest {
+public class Object2StringTest {
 
     @Autowired
     private Jackson2ObjectMapperBuilder j2oBuilder;
