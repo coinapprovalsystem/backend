@@ -50,8 +50,17 @@
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
         </table>
-        -->
         <table tableName="goodsInfo" domainObjectName="GoodsInfo">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
+        </table>
+        -->
+        <table tableName="seckill_inventory" domainObjectName="SeckillInventory">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+        <table tableName="seckill_success" domainObjectName="SeckillSuccess">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
         </table>
