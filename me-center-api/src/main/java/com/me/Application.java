@@ -1,6 +1,7 @@
 package com.me;
 
 import com.me.auth.annotation.EnableAuthentication;
+import com.me.spring.web.handler.annotation.EnableMorphedResponse;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @EnableAuthentication
+@EnableMorphedResponse
 @MapperScan(basePackages = "com.me.mysql.mapper")
 public class Application {
 

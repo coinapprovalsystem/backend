@@ -16,4 +16,4 @@ create table `userinfo` (
 /**
 插入测试数据
  */
-INSERT INTO mybatis.userInfo (userId,username,PASSWORD)VALUES(1,"jack","12345678");
+INSERT INTO dev.userInfo (userId,username,PASSWORD)VALUES(1,"jack","12345678");

@@ -5,7 +5,8 @@
 
 <generatorConfiguration>
 
-    <context id="SQLServer" targetRuntime="MyBatis3" defaultModelType="flat">
+    <context id="MYSQL" targetRuntime="MyBatis3" defaultModelType="flat">
+
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
             <property name="suppressJavaInterface" value="false"/>
         </plugin>
@@ -21,7 +22,8 @@
         </commentGenerator>
 
         <!-- db info -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/mybatis" userId="root" password="51804991"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/dev" userId="root" password="51804991"/>
+
 
         <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
             <property name="forceBigDecimals" value="false"/>
@@ -35,7 +37,7 @@
         </javaModelGenerator>
 
         <!--Mapper XML Configurations-->
-        <sqlMapGenerator targetPackage="mybatis.mysql.dbo" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mysql.dev" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
@@ -54,7 +56,6 @@
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
         </table>
-        -->
         <table tableName="seckill_inventory" domainObjectName="SeckillInventory">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
@@ -63,6 +64,11 @@
         <table tableName="seckill_success" domainObjectName="SeckillSuccess">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
+        </table>
+        -->
+        <table tableName="baseControl" domainObjectName="BaseControl">
+            <property name="useActualColumnNames" value="true"/>
+            <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
         </table>
 
     </context>
