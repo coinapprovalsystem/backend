@@ -37,7 +37,6 @@ public class TestServlet extends HttpServlet {
         OutputStream out = resp.getOutputStream();
         PrintWriter writer = new PrintWriter(out);
         writer.write(strline+Thread.currentThread().getName());
-
         writer.flush();
     }
 

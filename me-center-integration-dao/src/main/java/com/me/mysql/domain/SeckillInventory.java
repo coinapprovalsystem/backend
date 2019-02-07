@@ -1,9 +1,11 @@
 package com.me.mysql.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class SeckillInventory implements Serializable {
+    private Integer pid;
+
     private Integer productId;
 
     private String productName;
@@ -12,15 +14,23 @@ public class SeckillInventory implements Serializable {
 
     private Double price;
 
-    private Date secStartTime;
+    private LocalDateTime secStartTime;
 
-    private Date secEndTime;
+    private LocalDateTime secEndTime;
 
-    private Date createTime;
+    private LocalDateTime createTime;
 
-    private Date modifyTime;
+    private LocalDateTime modifyTime;
 
     private static final long serialVersionUID = 1L;
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
 
     public Integer getProductId() {
         return productId;
@@ -54,35 +64,35 @@ public class SeckillInventory implements Serializable {
         this.price = price;
     }
 
-    public Date getSecStartTime() {
+    public LocalDateTime getSecStartTime() {
         return secStartTime;
     }
 
-    public void setSecStartTime(Date secStartTime) {
+    public void setSecStartTime(LocalDateTime secStartTime) {
         this.secStartTime = secStartTime;
     }
 
-    public Date getSecEndTime() {
+    public LocalDateTime getSecEndTime() {
         return secEndTime;
     }
 
-    public void setSecEndTime(Date secEndTime) {
+    public void setSecEndTime(LocalDateTime secEndTime) {
         this.secEndTime = secEndTime;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getModifyTime() {
+    public LocalDateTime getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(Date modifyTime) {
+    public void setModifyTime(LocalDateTime modifyTime) {
         this.modifyTime = modifyTime;
     }
 }

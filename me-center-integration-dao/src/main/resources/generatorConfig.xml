@@ -37,7 +37,7 @@
         </javaModelGenerator>
 
         <!--Mapper XML Configurations-->
-        <sqlMapGenerator targetPackage="mysql.dev" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mybatis.mysql.dev" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
@@ -48,28 +48,37 @@
 
         <!--Table Configurations-->
         <!--
-        <table catalog="Tuhu_oa" schema="dbo" tableName="ChildrenWorkOrderControlValueMapping" domainObjectName="ChildrenWorkOrderControlValueMappingRw">
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
-        </table>
-        <table tableName="goodsInfo" domainObjectName="GoodsInfo">
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
-        </table>
-        <table tableName="seckill_inventory" domainObjectName="SeckillInventory">
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
-        </table>
-
-        <table tableName="seckill_success" domainObjectName="SeckillSuccess">
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="PKID" sqlStatement="JDBC" identity="true"/>
-        </table>
-        -->
         <table tableName="baseControl" domainObjectName="BaseControl">
             <property name="useActualColumnNames" value="true"/>
             <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
         </table>
 
+
+        <table tableName="seckill_success" domainObjectName="SeckillSuccess">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+
+        <table tableName="userInfo" domainObjectName="UserInfo">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="userId" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+        <table tableName="goodsInfo" domainObjectName="GoodsInfo">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
+        </table>
+        -->
+
+        <table tableName="seckill_inventory" domainObjectName="SeckillInventory">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
+
+            <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
+            <columnOverride column="secStartTime" javaType="java.time.LocalDateTime"/>
+            <columnOverride column="secEndTime" javaType="java.time.LocalDateTime"/>
+            <columnOverride column="modifyTime" javaType="java.time.LocalDateTime"/>
+        </table>
     </context>
 </generatorConfiguration>

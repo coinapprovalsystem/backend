@@ -10,7 +10,7 @@ public interface SeckillSuccessMapper {
 
     int deleteByExample(SeckillSuccessExample example);
 
-    int deleteByPrimaryKey(@Param("productId") Integer productId, @Param("phoneNumber") Long phoneNumber);
+    int deleteByPrimaryKey(Integer pid);
 
     int insert(SeckillSuccess record);
 
@@ -18,7 +18,7 @@ public interface SeckillSuccessMapper {
 
     List<SeckillSuccess> selectByExample(SeckillSuccessExample example);
 
-    SeckillSuccess selectByPrimaryKey(@Param("productId") Integer productId, @Param("phoneNumber") Long phoneNumber);
+    SeckillSuccess selectByPrimaryKey(Integer pid);
 
     int updateByExampleSelective(@Param("record") SeckillSuccess record, @Param("example") SeckillSuccessExample example);
 

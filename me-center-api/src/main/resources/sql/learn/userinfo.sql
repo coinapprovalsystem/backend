@@ -9,7 +9,7 @@ MySQL - 5.7.24-log
 建测试表
  */
 create table `userinfo` (
-	`userId` bigint (20),
+	`userId` integer,
 	`username` varchar (6000),
 	`password` varchar (3000)
 );

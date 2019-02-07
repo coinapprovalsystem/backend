@@ -4,36 +4,38 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class GoodsInfo implements Serializable {
-    private Integer goodsId;
+    private Integer pid;
 
-    private String goodsName;
+    private String productName;
 
     private String goodsType;
 
+    private BigDecimal price;
+
     private Integer sourceId;
 
-    private BigDecimal price;
+    private String address;
 
     private Boolean passedQualified;
 
-    private Integer population;
+    private Integer pop;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getGoodsId() {
-        return goodsId;
+    public Integer getPid() {
+        return pid;
     }
 
-    public void setGoodsId(Integer goodsId) {
-        this.goodsId = goodsId;
+    public void setPid(Integer pid) {
+        this.pid = pid;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
+    public void setProductName(String productName) {
+        this.productName = productName == null ? null : productName.trim();
     }
 
     public String getGoodsType() {
@@ -44,6 +46,14 @@ public class GoodsInfo implements Serializable {
         this.goodsType = goodsType == null ? null : goodsType.trim();
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public Integer getSourceId() {
         return sourceId;
     }
@@ -52,12 +62,12 @@ public class GoodsInfo implements Serializable {
         this.sourceId = sourceId;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
     public Boolean getPassedQualified() {
@@ -68,11 +78,11 @@ public class GoodsInfo implements Serializable {
         this.passedQualified = passedQualified;
     }
 
-    public Integer getPopulation() {
-        return population;
+    public Integer getPop() {
+        return pop;
     }
 
-    public void setPopulation(Integer population) {
-        this.population = population;
+    public void setPop(Integer pop) {
+        this.pop = pop;
     }
 }

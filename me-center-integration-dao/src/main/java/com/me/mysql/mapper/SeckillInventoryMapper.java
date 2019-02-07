@@ -10,7 +10,7 @@ public interface SeckillInventoryMapper {
 
     int deleteByExample(SeckillInventoryExample example);
 
-    int deleteByPrimaryKey(Integer productId);
+    int deleteByPrimaryKey(Integer pid);
 
     int insert(SeckillInventory record);
 
@@ -18,7 +18,7 @@ public interface SeckillInventoryMapper {
 
     List<SeckillInventory> selectByExample(SeckillInventoryExample example);
 
-    SeckillInventory selectByPrimaryKey(Integer productId);
+    SeckillInventory selectByPrimaryKey(Integer pid);
 
     int updateByExampleSelective(@Param("record") SeckillInventory record, @Param("example") SeckillInventoryExample example);
 

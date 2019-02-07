@@ -105,6 +105,66 @@ public class SeckillSuccessExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andPidIsNull() {
+            addCriterion("pid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIsNotNull() {
+            addCriterion("pid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidEqualTo(Integer value) {
+            addCriterion("pid =", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotEqualTo(Integer value) {
+            addCriterion("pid <>", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidGreaterThan(Integer value) {
+            addCriterion("pid >", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pid >=", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidLessThan(Integer value) {
+            addCriterion("pid <", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidLessThanOrEqualTo(Integer value) {
+            addCriterion("pid <=", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIn(List<Integer> values) {
+            addCriterion("pid in", values, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotIn(List<Integer> values) {
+            addCriterion("pid not in", values, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidBetween(Integer value1, Integer value2) {
+            addCriterion("pid between", value1, value2, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotBetween(Integer value1, Integer value2) {
+            addCriterion("pid not between", value1, value2, "pid");
+            return (Criteria) this;
+        }
+
         public Criteria andProductIdIsNull() {
             addCriterion("productId is null");
             return (Criteria) this;
@@ -175,52 +235,62 @@ public class SeckillSuccessExample {
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberEqualTo(Long value) {
+        public Criteria andPhoneNumberEqualTo(String value) {
             addCriterion("phoneNumber =", value, "phoneNumber");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberNotEqualTo(Long value) {
+        public Criteria andPhoneNumberNotEqualTo(String value) {
             addCriterion("phoneNumber <>", value, "phoneNumber");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberGreaterThan(Long value) {
+        public Criteria andPhoneNumberGreaterThan(String value) {
             addCriterion("phoneNumber >", value, "phoneNumber");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberGreaterThanOrEqualTo(Long value) {
+        public Criteria andPhoneNumberGreaterThanOrEqualTo(String value) {
             addCriterion("phoneNumber >=", value, "phoneNumber");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberLessThan(Long value) {
+        public Criteria andPhoneNumberLessThan(String value) {
             addCriterion("phoneNumber <", value, "phoneNumber");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberLessThanOrEqualTo(Long value) {
+        public Criteria andPhoneNumberLessThanOrEqualTo(String value) {
             addCriterion("phoneNumber <=", value, "phoneNumber");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberIn(List<Long> values) {
+        public Criteria andPhoneNumberLike(String value) {
+            addCriterion("phoneNumber like", value, "phoneNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumberNotLike(String value) {
+            addCriterion("phoneNumber not like", value, "phoneNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumberIn(List<String> values) {
             addCriterion("phoneNumber in", values, "phoneNumber");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberNotIn(List<Long> values) {
+        public Criteria andPhoneNumberNotIn(List<String> values) {
             addCriterion("phoneNumber not in", values, "phoneNumber");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberBetween(Long value1, Long value2) {
+        public Criteria andPhoneNumberBetween(String value1, String value2) {
             addCriterion("phoneNumber between", value1, value2, "phoneNumber");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberNotBetween(Long value1, Long value2) {
+        public Criteria andPhoneNumberNotBetween(String value1, String value2) {
             addCriterion("phoneNumber not between", value1, value2, "phoneNumber");
             return (Criteria) this;
         }
@@ -235,52 +305,52 @@ public class SeckillSuccessExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Byte value) {
+        public Criteria andStatusEqualTo(Integer value) {
             addCriterion("status =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Byte value) {
+        public Criteria andStatusNotEqualTo(Integer value) {
             addCriterion("status <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Byte value) {
+        public Criteria andStatusGreaterThan(Integer value) {
             addCriterion("status >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
             addCriterion("status >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Byte value) {
+        public Criteria andStatusLessThan(Integer value) {
             addCriterion("status <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Byte value) {
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
             addCriterion("status <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Byte> values) {
+        public Criteria andStatusIn(List<Integer> values) {
             addCriterion("status in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Byte> values) {
+        public Criteria andStatusNotIn(List<Integer> values) {
             addCriterion("status not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Byte value1, Byte value2) {
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
             addCriterion("status between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }

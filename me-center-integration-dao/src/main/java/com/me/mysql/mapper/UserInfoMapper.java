@@ -1,23 +1,22 @@
 package com.me.mysql.mapper;
 
 import com.me.mysql.domain.UserInfo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import com.me.mysql.domain.UserInfoExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-/**
- * userInfo interface
- *
- * @author zhaohaojie
- * @date 2018-12-29 22:05
- */
-@Mapper
 public interface UserInfoMapper {
+    long countByExample(UserInfoExample example);
 
-    @Select("select * from userInfo where userId = #{id}")
-    public UserInfo getUserInfo(Integer id);
+    int deleteByExample(UserInfoExample example);
 
-    @Insert("insert into userInfo(")
-    public UserInfo insertUserInfo(UserInfo userInfo);
+    int insert(UserInfo record);
+
+    int insertSelective(UserInfo record);
+
+    List<UserInfo> selectByExample(UserInfoExample example);
+
+    int updateByExampleSelective(@Param("record") UserInfo record, @Param("example") UserInfoExample example);
+
+    int updateByExample(@Param("record") UserInfo record, @Param("example") UserInfoExample example);
 }
-

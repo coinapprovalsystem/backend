@@ -3,7 +3,6 @@ package com.me.common;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.me.mysql.domain.GoodsInfo;
 import com.me.mysql.domain.UserInfo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.Test;

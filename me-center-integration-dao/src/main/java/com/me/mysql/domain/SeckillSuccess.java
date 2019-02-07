@@ -4,15 +4,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SeckillSuccess implements Serializable {
+    private Integer pid;
+
     private Integer productId;
 
-    private Long phoneNumber;
+    private String phoneNumber;
 
-    private Byte status;
+    private Integer status;
 
     private Date createTime;
 
     private static final long serialVersionUID = 1L;
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
 
     public Integer getProductId() {
         return productId;
@@ -22,19 +32,19 @@ public class SeckillSuccess implements Serializable {
         this.productId = productId;
     }
 
-    public Long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

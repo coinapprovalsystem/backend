@@ -1,7 +1,7 @@
 package com.me.mysql.domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SeckillInventoryExample {
@@ -103,6 +103,66 @@ public class SeckillInventoryExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        public Criteria andPidIsNull() {
+            addCriterion("pid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIsNotNull() {
+            addCriterion("pid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidEqualTo(Integer value) {
+            addCriterion("pid =", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotEqualTo(Integer value) {
+            addCriterion("pid <>", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidGreaterThan(Integer value) {
+            addCriterion("pid >", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pid >=", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidLessThan(Integer value) {
+            addCriterion("pid <", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidLessThanOrEqualTo(Integer value) {
+            addCriterion("pid <=", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIn(List<Integer> values) {
+            addCriterion("pid in", values, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotIn(List<Integer> values) {
+            addCriterion("pid not in", values, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidBetween(Integer value1, Integer value2) {
+            addCriterion("pid between", value1, value2, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotBetween(Integer value1, Integer value2) {
+            addCriterion("pid not between", value1, value2, "pid");
+            return (Criteria) this;
         }
 
         public Criteria andProductIdIsNull() {
@@ -365,52 +425,52 @@ public class SeckillInventoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeEqualTo(Date value) {
+        public Criteria andSecStartTimeEqualTo(LocalDateTime value) {
             addCriterion("secStartTime =", value, "secStartTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeNotEqualTo(Date value) {
+        public Criteria andSecStartTimeNotEqualTo(LocalDateTime value) {
             addCriterion("secStartTime <>", value, "secStartTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeGreaterThan(Date value) {
+        public Criteria andSecStartTimeGreaterThan(LocalDateTime value) {
             addCriterion("secStartTime >", value, "secStartTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andSecStartTimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("secStartTime >=", value, "secStartTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeLessThan(Date value) {
+        public Criteria andSecStartTimeLessThan(LocalDateTime value) {
             addCriterion("secStartTime <", value, "secStartTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeLessThanOrEqualTo(Date value) {
+        public Criteria andSecStartTimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("secStartTime <=", value, "secStartTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeIn(List<Date> values) {
+        public Criteria andSecStartTimeIn(List<LocalDateTime> values) {
             addCriterion("secStartTime in", values, "secStartTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeNotIn(List<Date> values) {
+        public Criteria andSecStartTimeNotIn(List<LocalDateTime> values) {
             addCriterion("secStartTime not in", values, "secStartTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeBetween(Date value1, Date value2) {
+        public Criteria andSecStartTimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("secStartTime between", value1, value2, "secStartTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecStartTimeNotBetween(Date value1, Date value2) {
+        public Criteria andSecStartTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("secStartTime not between", value1, value2, "secStartTime");
             return (Criteria) this;
         }
@@ -425,52 +485,52 @@ public class SeckillInventoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeEqualTo(Date value) {
+        public Criteria andSecEndTimeEqualTo(LocalDateTime value) {
             addCriterion("secEndTime =", value, "secEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeNotEqualTo(Date value) {
+        public Criteria andSecEndTimeNotEqualTo(LocalDateTime value) {
             addCriterion("secEndTime <>", value, "secEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeGreaterThan(Date value) {
+        public Criteria andSecEndTimeGreaterThan(LocalDateTime value) {
             addCriterion("secEndTime >", value, "secEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andSecEndTimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("secEndTime >=", value, "secEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeLessThan(Date value) {
+        public Criteria andSecEndTimeLessThan(LocalDateTime value) {
             addCriterion("secEndTime <", value, "secEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeLessThanOrEqualTo(Date value) {
+        public Criteria andSecEndTimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("secEndTime <=", value, "secEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeIn(List<Date> values) {
+        public Criteria andSecEndTimeIn(List<LocalDateTime> values) {
             addCriterion("secEndTime in", values, "secEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeNotIn(List<Date> values) {
+        public Criteria andSecEndTimeNotIn(List<LocalDateTime> values) {
             addCriterion("secEndTime not in", values, "secEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeBetween(Date value1, Date value2) {
+        public Criteria andSecEndTimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("secEndTime between", value1, value2, "secEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andSecEndTimeNotBetween(Date value1, Date value2) {
+        public Criteria andSecEndTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("secEndTime not between", value1, value2, "secEndTime");
             return (Criteria) this;
         }
@@ -485,52 +545,52 @@ public class SeckillInventoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
+        public Criteria andCreateTimeEqualTo(LocalDateTime value) {
             addCriterion("createTime =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
+        public Criteria andCreateTimeNotEqualTo(LocalDateTime value) {
             addCriterion("createTime <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
+        public Criteria andCreateTimeGreaterThan(LocalDateTime value) {
             addCriterion("createTime >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("createTime >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
+        public Criteria andCreateTimeLessThan(LocalDateTime value) {
             addCriterion("createTime <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("createTime <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
+        public Criteria andCreateTimeIn(List<LocalDateTime> values) {
             addCriterion("createTime in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
+        public Criteria andCreateTimeNotIn(List<LocalDateTime> values) {
             addCriterion("createTime not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("createTime between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("createTime not between", value1, value2, "createTime");
             return (Criteria) this;
         }
@@ -545,52 +605,52 @@ public class SeckillInventoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeEqualTo(Date value) {
+        public Criteria andModifyTimeEqualTo(LocalDateTime value) {
             addCriterion("modifyTime =", value, "modifyTime");
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeNotEqualTo(Date value) {
+        public Criteria andModifyTimeNotEqualTo(LocalDateTime value) {
             addCriterion("modifyTime <>", value, "modifyTime");
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeGreaterThan(Date value) {
+        public Criteria andModifyTimeGreaterThan(LocalDateTime value) {
             addCriterion("modifyTime >", value, "modifyTime");
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andModifyTimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("modifyTime >=", value, "modifyTime");
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeLessThan(Date value) {
+        public Criteria andModifyTimeLessThan(LocalDateTime value) {
             addCriterion("modifyTime <", value, "modifyTime");
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeLessThanOrEqualTo(Date value) {
+        public Criteria andModifyTimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("modifyTime <=", value, "modifyTime");
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeIn(List<Date> values) {
+        public Criteria andModifyTimeIn(List<LocalDateTime> values) {
             addCriterion("modifyTime in", values, "modifyTime");
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeNotIn(List<Date> values) {
+        public Criteria andModifyTimeNotIn(List<LocalDateTime> values) {
             addCriterion("modifyTime not in", values, "modifyTime");
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeBetween(Date value1, Date value2) {
+        public Criteria andModifyTimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("modifyTime between", value1, value2, "modifyTime");
             return (Criteria) this;
         }
 
-        public Criteria andModifyTimeNotBetween(Date value1, Date value2) {
+        public Criteria andModifyTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("modifyTime not between", value1, value2, "modifyTime");
             return (Criteria) this;
         }

@@ -12,5 +12,10 @@ import lombok.Setter;
 public class SeckillResult {
     private Integer resultCode;// 0:秒杀成功 -1:重复秒杀 -2:秒杀失败
     private String message;
+
+    public SeckillResult(String message,Integer resultCode){
+        this.message = message;
+        this.resultCode = resultCode;
+    }
 }
 

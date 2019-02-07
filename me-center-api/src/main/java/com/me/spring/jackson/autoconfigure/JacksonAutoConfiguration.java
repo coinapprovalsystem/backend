@@ -21,8 +21,7 @@ public class JacksonAutoConfiguration {
      * 通过JDK的ServiceLoader机制来寻找Jackson的modules
      */
     @Bean
-    Jackson2ObjectMapperBuilderCustomizer customizeJacksonModules()
-    {
+    Jackson2ObjectMapperBuilderCustomizer customizeJacksonModules(){
         return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.findModulesViaServiceLoader(true);
     }
 }
