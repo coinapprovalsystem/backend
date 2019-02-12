@@ -1,7 +1,7 @@
 package com.me.mysql.domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SeckillSuccessExample {
@@ -103,66 +103,6 @@ public class SeckillSuccessExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        public Criteria andPidIsNull() {
-            addCriterion("pid is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidIsNotNull() {
-            addCriterion("pid is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidEqualTo(Integer value) {
-            addCriterion("pid =", value, "pid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidNotEqualTo(Integer value) {
-            addCriterion("pid <>", value, "pid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidGreaterThan(Integer value) {
-            addCriterion("pid >", value, "pid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("pid >=", value, "pid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidLessThan(Integer value) {
-            addCriterion("pid <", value, "pid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidLessThanOrEqualTo(Integer value) {
-            addCriterion("pid <=", value, "pid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidIn(List<Integer> values) {
-            addCriterion("pid in", values, "pid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidNotIn(List<Integer> values) {
-            addCriterion("pid not in", values, "pid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidBetween(Integer value1, Integer value2) {
-            addCriterion("pid between", value1, value2, "pid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPidNotBetween(Integer value1, Integer value2) {
-            addCriterion("pid not between", value1, value2, "pid");
-            return (Criteria) this;
         }
 
         public Criteria andProductIdIsNull() {
@@ -295,6 +235,66 @@ public class SeckillSuccessExample {
             return (Criteria) this;
         }
 
+        public Criteria andPidIsNull() {
+            addCriterion("pid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIsNotNull() {
+            addCriterion("pid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidEqualTo(Integer value) {
+            addCriterion("pid =", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotEqualTo(Integer value) {
+            addCriterion("pid <>", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidGreaterThan(Integer value) {
+            addCriterion("pid >", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pid >=", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidLessThan(Integer value) {
+            addCriterion("pid <", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidLessThanOrEqualTo(Integer value) {
+            addCriterion("pid <=", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIn(List<Integer> values) {
+            addCriterion("pid in", values, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotIn(List<Integer> values) {
+            addCriterion("pid not in", values, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidBetween(Integer value1, Integer value2) {
+            addCriterion("pid between", value1, value2, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotBetween(Integer value1, Integer value2) {
+            addCriterion("pid not between", value1, value2, "pid");
+            return (Criteria) this;
+        }
+
         public Criteria andStatusIsNull() {
             addCriterion("status is null");
             return (Criteria) this;
@@ -365,52 +365,52 @@ public class SeckillSuccessExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
+        public Criteria andCreateTimeEqualTo(LocalDateTime value) {
             addCriterion("createTime =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
+        public Criteria andCreateTimeNotEqualTo(LocalDateTime value) {
             addCriterion("createTime <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
+        public Criteria andCreateTimeGreaterThan(LocalDateTime value) {
             addCriterion("createTime >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("createTime >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
+        public Criteria andCreateTimeLessThan(LocalDateTime value) {
             addCriterion("createTime <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("createTime <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
+        public Criteria andCreateTimeIn(List<LocalDateTime> values) {
             addCriterion("createTime in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
+        public Criteria andCreateTimeNotIn(List<LocalDateTime> values) {
             addCriterion("createTime not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("createTime between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("createTime not between", value1, value2, "createTime");
             return (Criteria) this;
         }

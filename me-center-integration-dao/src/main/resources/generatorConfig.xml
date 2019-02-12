@@ -54,11 +54,6 @@
         </table>
 
 
-        <table tableName="seckill_success" domainObjectName="SeckillSuccess">
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
-        </table>
-
 
         <table tableName="userInfo" domainObjectName="UserInfo">
             <property name="useActualColumnNames" value="true"/>
@@ -69,8 +64,6 @@
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
         </table>
-        -->
-
         <table tableName="seckill_inventory" domainObjectName="SeckillInventory">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
@@ -80,5 +73,14 @@
             <columnOverride column="secEndTime" javaType="java.time.LocalDateTime"/>
             <columnOverride column="modifyTime" javaType="java.time.LocalDateTime"/>
         </table>
+        -->
+
+        <table tableName="seckill_success" domainObjectName="SeckillSuccess">
+            <property name="useActualColumnNames" value="true"/>
+            <!--<generatedKey column="pid" sqlStatement="JDBC" identity="true"/>-->
+
+            <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
+        </table>
+
     </context>
 </generatorConfiguration>

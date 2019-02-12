@@ -1,28 +1,20 @@
 package com.me.mysql.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class SeckillSuccess implements Serializable {
-    private Integer pid;
-
     private Integer productId;
 
     private String phoneNumber;
 
+    private Integer pid;
+
     private Integer status;
 
-    private Date createTime;
+    private LocalDateTime createTime;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getPid() {
-        return pid;
-    }
-
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
 
     public Integer getProductId() {
         return productId;
@@ -40,6 +32,14 @@ public class SeckillSuccess implements Serializable {
         this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
     }
 
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -48,11 +48,11 @@ public class SeckillSuccess implements Serializable {
         this.status = status;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 }

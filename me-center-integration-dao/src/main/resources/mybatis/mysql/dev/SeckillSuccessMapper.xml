@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.me.mysql.mapper.SeckillSuccessMapper">
   <resultMap id="BaseResultMap" type="com.me.mysql.domain.SeckillSuccess">
-    <id column="pid" jdbcType="INTEGER" property="pid" />
-    <result column="productId" jdbcType="INTEGER" property="productId" />
-    <result column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber" />
+    <id column="productId" jdbcType="INTEGER" property="productId" />
+    <id column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    pid, productId, phoneNumber, status, createTime
+    productId, phoneNumber, pid, status, createTime
   </sql>
   <select id="selectByExample" parameterType="com.me.mysql.domain.SeckillSuccessExample" resultMap="BaseResultMap">
     select
@@ -83,15 +83,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from seckill_success
-    where pid = #{pid,jdbcType=INTEGER}
+    where productId = #{productId,jdbcType=INTEGER}
+      and phoneNumber = #{phoneNumber,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="map">
     delete from seckill_success
-    where pid = #{pid,jdbcType=INTEGER}
+    where productId = #{productId,jdbcType=INTEGER}
+      and phoneNumber = #{phoneNumber,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.me.mysql.domain.SeckillSuccessExample">
     delete from seckill_success
@@ -99,13 +101,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="pid" keyProperty="pid" parameterType="com.me.mysql.domain.SeckillSuccess" useGeneratedKeys="true">
-    insert into seckill_success (productId, phoneNumber, status, 
-      createTime)
-    values (#{productId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.me.mysql.domain.SeckillSuccess">
+    insert into seckill_success (productId, phoneNumber, pid, 
+      status, createTime)
+    values (#{productId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="pid" keyProperty="pid" parameterType="com.me.mysql.domain.SeckillSuccess" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.me.mysql.domain.SeckillSuccess">
     insert into seckill_success
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="productId != null">
@@ -113,6 +115,9 @@
       </if>
       <if test="phoneNumber != null">
         phoneNumber,
+      </if>
+      <if test="pid != null">
+        pid,
       </if>
       <if test="status != null">
         status,
@@ -127,6 +132,9 @@
       </if>
       <if test="phoneNumber != null">
         #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -145,14 +153,14 @@
   <update id="updateByExampleSelective" parameterType="map">
     update seckill_success
     <set>
-      <if test="record.pid != null">
-        pid = #{record.pid,jdbcType=INTEGER},
-      </if>
       <if test="record.productId != null">
         productId = #{record.productId,jdbcType=INTEGER},
       </if>
       <if test="record.phoneNumber != null">
         phoneNumber = #{record.phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -167,9 +175,9 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update seckill_success
-    set pid = #{record.pid,jdbcType=INTEGER},
-      productId = #{record.productId,jdbcType=INTEGER},
+    set productId = #{record.productId,jdbcType=INTEGER},
       phoneNumber = #{record.phoneNumber,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=INTEGER},
       status = #{record.status,jdbcType=INTEGER},
       createTime = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -179,11 +187,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.me.mysql.domain.SeckillSuccess">
     update seckill_success
     <set>
-      <if test="productId != null">
-        productId = #{productId,jdbcType=INTEGER},
-      </if>
-      <if test="phoneNumber != null">
-        phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -192,14 +197,15 @@
         createTime = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where pid = #{pid,jdbcType=INTEGER}
+    where productId = #{productId,jdbcType=INTEGER}
+      and phoneNumber = #{phoneNumber,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.me.mysql.domain.SeckillSuccess">
     update seckill_success
-    set productId = #{productId,jdbcType=INTEGER},
-      phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+    set pid = #{pid,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       createTime = #{createTime,jdbcType=TIMESTAMP}
-    where pid = #{pid,jdbcType=INTEGER}
+    where productId = #{productId,jdbcType=INTEGER}
+      and phoneNumber = #{phoneNumber,jdbcType=VARCHAR}
   </update>
 </mapper>

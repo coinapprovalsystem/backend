@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.math.BigInteger;
 
 /**
  * @author zhaohaojie
@@ -28,16 +29,7 @@ public class TestServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.debug("dopost method is invoked.");
-        Reader reader = new InputStreamReader(req.getInputStream());
-        char[] rs = new char[1024];
-        while (reader.read(rs) > 0) {
-            System.out.println(rs);
-        }
-        OutputStream out = resp.getOutputStream();
-        PrintWriter writer = new PrintWriter(out);
-        writer.write(strline+Thread.currentThread().getName());
-        writer.flush();
+
     }
 
     @Override

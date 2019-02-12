@@ -1,10 +1,16 @@
 package com.me.service;
 
+import com.me.entity.SeckillResult;
+import com.me.exception.SeckillException;
+import com.me.mysql.domain.SeckillSuccess;
 import com.me.mysql.domain.UserInfo;
 import com.me.mysql.domain.UserInfoExample;
+import com.me.mysql.mapper.SeckillSuccessMapper;
 import com.me.mysql.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,5 +32,6 @@ public class UserInfoService {
         List<UserInfo> list = userInfoMapper.selectByExample(userInfoExample);
         return list.stream().findFirst().orElse(new UserInfo());
     }
+
 }
 

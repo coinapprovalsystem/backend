@@ -3,6 +3,7 @@ package com.me.common;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.me.mysql.domain.GoodsInfo;
 import com.me.mysql.domain.UserInfo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.Test;
@@ -30,8 +31,8 @@ public class Object2StringTest {
         Integer id  = 12;
         //object
         GoodsInfo goodsInfo = new GoodsInfo();
-        goodsInfo.setGoodsId(id);
-        goodsInfo.setGoodsName("巧克力");
+        goodsInfo.setPid(id);
+        goodsInfo.setProductName("巧克力");
         //UserInfo
         UserInfo userInfo = new UserInfo();
         userInfo.setPassword("12211");

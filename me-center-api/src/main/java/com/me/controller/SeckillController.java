@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
+ * 秒杀控制器类
  * @author zhaohaojie
  * @date 2019-01-24 17:49
  */
 @RestController
-@RequestMapping("/seckill/api")
+@RequestMapping("/seckill")
 public class SeckillController {
 
     @Autowired
@@ -24,14 +25,20 @@ public class SeckillController {
      * @author : zhaohaojie
      * @date : 2019/2/7 19:25
      */
-    @GetMapping("/seckill/url")
-    public SeckillUrlExposer getSeckillUrl(Integer productId) {
-        return seckillService.getSeckillUrlExposer(productId);
+    @GetMapping("/getUrl")
+    public SeckillUrlExposer getSeckillUrl(String phone ,Integer productId) {
+        return seckillService.getSeckillUrlExposer(Long.parseLong(phone),productId);
     }
 
-    @PostMapping("/seckill/execute")
+    /**
+     * 执行秒杀
+     * @author : zhaohaojie
+     * @date : 2019/2/9 21:36
+     */
+    @PostMapping("/execute")
     public SeckillResult seckillExecute(@RequestParam String MD5, @RequestParam Integer productId, @RequestParam String phoneNumber) {
         return seckillService.seckillExecute(MD5, productId, phoneNumber);
     }
+
 }
 

@@ -9,11 +9,16 @@ import com.me.mysql.domain.SeckillInventoryExample;
 import com.me.mysql.domain.SeckillSuccess;
 import com.me.mysql.mapper.SeckillSuccessMapper;
 import com.me.mysql.mapper.extension.SeckillInventoryMapper;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -32,9 +37,9 @@ public class SeckillService {
     private SeckillInventoryMapper seckillInventoryMapper;
 
     @Autowired
-    private SeckillSuccessMapper seckillSuccessMapper;
+    private SeckillSuccessService seckillSuccessService;
 
-    public String getMD5(Integer phone) {
+    public String getMD5(Long phone) {
         if (phone == null) {
             throw new SeckillException("用户手机号为空。", -1);
         }
@@ -45,13 +50,13 @@ public class SeckillService {
     /**
      * 执行秒杀操作
      * 1、只包含秒杀业务层处理，没有校验层数据
-     * 2、校验MD5是否一致，
-     *
+     * 2、校验MD5是否一致
      * @return
      */
+    @Transactional(propagation = Propagation.REQUIRED)
     public SeckillResult seckillExecute(String MD5, Integer productId, String phoneNumber) {
         //1. 校验盐值
-        if (StringUtils.isEmpty(phoneNumber) || !StringUtils.equals(MD5,getMD5(Integer.parseInt(phoneNumber)))){
+        if (StringUtils.isEmpty(phoneNumber) || !StringUtils.equals(MD5,getMD5(Long.parseLong(phoneNumber)))){
             throw new SeckillException("用户身份验证失败，请重新登陆。",-1);
         }
         //2. 减库存
@@ -64,16 +69,14 @@ public class SeckillService {
             seckillSuccess.setPhoneNumber(phoneNumber);
             seckillSuccess.setProductId(productId);
             seckillSuccess.setStatus(OrderStatusEnum.WaitToPay.getId());
-            int successNumber = seckillSuccessMapper.insert(seckillSuccess);
-            //重复秒杀
-            if (successNumber == 0){
-                throw new SeckillException("重复秒杀",-1);
-            }else if (successNumber == 1){
-
-            }
+            seckillSuccess.setCreateTime(LocalDateTime.now());
+            seckillSuccessService.insertSuccess(seckillSuccess);
+//            throw new SeckillException("测试require_new传播机制",-1);
+            return new SeckillResult("秒杀成功待付款",0);
         }
-        return new SeckillResult("秒杀成功待付款",0);
     }
+
+
 
     /**
      * 获取暴露的秒杀地址，如果符合要求即可调秒杀地址
@@ -81,7 +84,7 @@ public class SeckillService {
      * @author : zhaohaojie
      * @date : 2019/2/7 23:04
      */
-    public SeckillUrlExposer getSeckillUrlExposer(Integer productId){
+    public SeckillUrlExposer getSeckillUrlExposer(Long phone,Integer productId){
         SeckillInventoryExample exp = new SeckillInventoryExample();
         exp.createCriteria().andProductIdEqualTo(productId);
         SeckillInventory seckillInventory = seckillInventoryMapper.selectByExample(exp).stream().findFirst().orElse(null);
@@ -92,7 +95,7 @@ public class SeckillService {
             return new SeckillUrlExposer(true,productId,
                     LocalDateTime.now(),seckillInventory.getSecStartTime(),seckillInventory.getSecEndTime());
         }
-        return new SeckillUrlExposer(false,getMD5(productId),productId,
+        return new SeckillUrlExposer(false,getMD5(phone),productId,
                 LocalDateTime.now(), seckillInventory.getSecStartTime(),seckillInventory.getSecEndTime());
     }
 
