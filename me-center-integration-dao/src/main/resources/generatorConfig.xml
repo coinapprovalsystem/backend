@@ -22,7 +22,7 @@
         </commentGenerator>
 
         <!-- db info -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/dev" userId="root" password="51804991"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/dev" userId="root" password="root"/>
 
 
         <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
@@ -73,12 +73,15 @@
             <columnOverride column="secEndTime" javaType="java.time.LocalDateTime"/>
             <columnOverride column="modifyTime" javaType="java.time.LocalDateTime"/>
         </table>
-        -->
-
         <table tableName="seckill_success" domainObjectName="SeckillSuccess">
             <property name="useActualColumnNames" value="true"/>
-            <!--<generatedKey column="pid" sqlStatement="JDBC" identity="true"/>-->
-
+            <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
+        </table>
+        -->
+        <table tableName="user" domainObjectName="User">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
             <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
         </table>
 
