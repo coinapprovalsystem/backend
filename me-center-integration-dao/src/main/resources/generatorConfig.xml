@@ -22,7 +22,7 @@
         </commentGenerator>
 
         <!-- db info -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/dev" userId="root" password="root"/>
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/dev?serverTimezone=UTC" userId="root" password="root"/>
 
 
         <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
@@ -78,10 +78,15 @@
             <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
             <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
         </table>
-        -->
         <table tableName="user" domainObjectName="User">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
+        </table>
+        -->
+        <table tableName="formtemplate" domainObjectName="FormTemplate">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="templateID" sqlStatement="JDBC" identity="true"/>
             <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
         </table>
 
